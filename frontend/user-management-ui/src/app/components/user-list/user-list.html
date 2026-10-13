@@ -1,0 +1,64 @@
+<div class="page">
+    <div class="page-header">
+    <h1>Users</h1>
+    <a routerLink="/users/new" class="btn-add">Add User</a>
+    </div>
+      <div class="search-bar">
+    <input
+      #searchBox
+      type="text"
+      placeholder="Search by name or email"
+      (keyup.enter)="search(searchBox.value)"
+    />
+    <button type="button" class="btn-search" (click)="search(searchBox.value)">Search</button>
+    <button type="button" class="btn-clear" (click)="searchBox.value = ''; search('')">Clear</button>
+  </div>
+    @if (successMessage()) {
+    <p class="success">{{ successMessage() }}</p>
+  }
+  @if (actionError()) {
+    <p class="error">{{ actionError() }}</p>
+  }
+
+  @if (loading()) {
+    <p>Loading users...</p>
+  } @else if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+  } @else if (users().length === 0) {
+    <p>No users found.</p>
+  } @else {
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Department</th>
+            <th>Designation</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of users(); track user.user_id) {
+            <tr>
+              <td data-label="ID" >{{ user.user_id }}</td>
+              <td data-label="Name" >{{ user.first_name }} {{ user.last_name }}</td>
+              <td data-label="Email" >{{ user.email }}</td>
+              <td data-label="Phone" >{{ user.phone || '-' }}</td>
+              <td data-label="Department" >{{ user.department || '-' }}</td>
+              <td data-label="Designation" >{{ user.designation || '-' }}</td>
+              <td data-label="Status" >{{ user.status }}</td>
+              <td class="actions-cell">
+                <a [routerLink]="['/users', user.user_id, 'edit']" class="btn-edit">Edit</a>
+                <button type="button" class="btn-delete" (click)="deleteUser(user)">Delete</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

@@ -1,0 +1,180 @@
+.page {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 16px;
+  font-family: system-ui, sans-serif;
+}
+
+h1 {
+  margin-bottom: 16px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+th {
+  background: #f3f4f6;
+}
+
+.error {
+  color: #b91c1c;
+  background: #fee2e2;
+  padding: 10px 12px;
+  border-radius: 6px;
+}
+
+.success {
+  color: #166534;
+  background: #dcfce7;
+  padding: 10px 12px;
+  border-radius: 6px;
+}
+
+.btn-delete {
+  background: #dc2626;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background: #b91c1c;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.page-header h1 {
+  margin: 0;
+}
+
+.btn-add {
+  background: #2563eb;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.btn-edit {
+  background: #f59e0b;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-right: 6px;
+}
+
+.search-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.btn-search {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-clear {
+  background: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .page-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .search-bar {
+    flex-wrap: wrap;
+  }
+
+  .search-bar input {
+    flex-basis: 100%;
+  }
+
+  th,
+  td {
+    white-space: normal;
+  }
+
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 6px 0;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: none;
+    padding: 6px 12px;
+    text-align: right;
+    word-break: break-word;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .actions-cell {
+    justify-content: flex-start;
+  }
+
+  .actions-cell::before {
+    content: none;
+  }
+}

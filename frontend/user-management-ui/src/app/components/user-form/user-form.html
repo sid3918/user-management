@@ -1,0 +1,93 @@
+<div class="page">
+  <h1>{{ userId !== null ? 'Edit User' : 'Add User' }}</h1>
+
+  @if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="grid">
+      <div class="field">
+        <label for="first_name">First Name *</label>
+        <input id="first_name" type="text" formControlName="first_name" />
+        @if (form.controls.first_name.touched && form.controls.first_name.errors) {
+          <small class="field-error">First name is required (max 100 characters).</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="last_name">Last Name *</label>
+        <input id="last_name" type="text" formControlName="last_name" />
+        @if (form.controls.last_name.touched && form.controls.last_name.errors) {
+          <small class="field-error">Last name is required (max 100 characters).</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="email">Email *</label>
+        <input id="email" type="email" formControlName="email" />
+        @if (form.controls.email.touched && form.controls.email.errors) {
+          @if (form.controls.email.errors['required']) {
+            <small class="field-error">Email is required.</small>
+          } @else {
+            <small class="field-error">Enter a valid email address.</small>
+          }
+        }
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone Number</label>
+        <input id="phone" type="text" formControlName="phone" />
+        @if (form.controls.phone.touched && form.controls.phone.errors) {
+          <small class="field-error">Enter 10 to 15 digits, with an optional + at the start.</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="gender">Gender</label>
+        <select id="gender" formControlName="gender">
+          <option value="">Select</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="date_of_birth">Date of Birth</label>
+        <input id="date_of_birth" type="date" formControlName="date_of_birth" [max]="today" />
+      </div>
+
+      <div class="field">
+        <label for="department">Department</label>
+        <input id="department" type="text" formControlName="department" />
+        @if (form.controls.department.touched && form.controls.department.errors) {
+          <small class="field-error">Maximum 100 characters.</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="designation">Designation</label>
+        <input id="designation" type="text" formControlName="designation" />
+        @if (form.controls.designation.touched && form.controls.designation.errors) {
+          <small class="field-error">Maximum 100 characters.</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="status">Status *</label>
+        <select id="status" formControlName="status">
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="btn-primary" [disabled]="saving()">
+        {{ saving() ? 'Saving...' : userId !== null ? 'Update User' : 'Add User' }}
+      </button>
+      <a routerLink="/users" class="btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>
