@@ -102,6 +102,13 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
+If the PowerShell is blocking the virtual environment activation script, 
+run this command - 
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+Run this once, then try activating it again.
+
 On macOS or Linux, activate with `source venv/bin/activate` instead.
 
 ### Configuration
